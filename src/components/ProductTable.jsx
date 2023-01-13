@@ -3,13 +3,19 @@ import ProductCategory from "./ProductCategory";
 export default function ProductTable({ products, showStocked, filterSearch }) {
   const refinedProducts = [];
 
-  const productsToDisplay = products.filter((item) => 
+  const productsToDisplay = products.filter((item) =>
     filteredList(item, filterSearch)
   );
+  let filteredProductList = [...productsToDisplay];
+
+  if (!showStocked)
+    filteredProductList = productsToDisplay.filter((item) => item.stocked);
 
   function filteredList(item, filterSearch) {
     const length = filterSearch.length;
-    return item.name.slice(0, length).toLowerCase() === filterSearch.toLowerCase();
+    return (
+      item.name.slice(0, length).toLowerCase() === filterSearch.toLowerCase()
+    );
   }
 
   function findCategory(item, refinedProducts) {
@@ -19,7 +25,7 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
     );
   }
 
-  productsToDisplay.forEach((item) => {
+  filteredProductList.forEach((item) => {
     const indexOfItem = findCategory(item, refinedProducts);
     if (indexOfItem === -1) {
       const wholeCategory = {
@@ -48,9 +54,7 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
   });
 
   const groupedItems = refinedProducts.map((item, myKey) => {
-    return (
-      <ProductCategory item={item} key={myKey} showStocked={showStocked} />
-    );
+    return <ProductCategory item={item} key={myKey} />;
   });
 
   return (
@@ -68,9 +72,5 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
 }
 
 function titleCase(str) {
-  str = str.toLowerCase().split(" ");
-  for (var i = 0; i < str.length; i++) {
-    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-  }
-  return str.join(" ");
+   return str.split(" ").map(item => item[0].toUpperCase() + item.slice(1).toLowerCase()).join(" ");
 }

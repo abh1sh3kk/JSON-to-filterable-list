@@ -1,5 +1,4 @@
-export default function ProductRow({ item, myKey, showStocked}) {
-	if (!showStocked && !item.stocked) return;
+export default function ProductRow({ item, myKey}) {
 	const tdStyle = item.stocked ? {} : {color: "#af0000"};
   return (
     <tr key={myKey}>
