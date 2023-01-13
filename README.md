@@ -1,4 +1,4 @@
-# Filterable List? Need suggestions 
+# Data driven filterable list? Need suggestions 
 
 Found an interesting project in ReactDocs and decided to try it. 
 
