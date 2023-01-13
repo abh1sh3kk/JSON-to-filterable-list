@@ -4,6 +4,7 @@ import SearchBar from "./components/SearchBar";
 
 export default function FilterableProductTable() {
   console.clear();
+  
   const PRODUCTS = [
     { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
     { category: "Fruits", price: "$3", stocked: true, name: "Dragonfruit" },

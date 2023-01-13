@@ -3,20 +3,15 @@ import ProductCategory from "./ProductCategory";
 export default function ProductTable({ products, showStocked, filterSearch }) {
   const refinedProducts = [];
 
-  const productsToDisplay = products.filter((item) =>
+  // Filters list according to serachbar
+  const searchFilteredProducts = products.filter((item) =>
     filteredList(item, filterSearch)
   );
-  let filteredProductList = [...productsToDisplay];
 
+  // Filters list to show or hide stocked items
+  let filteredProductList = [...searchFilteredProducts];
   if (!showStocked)
-    filteredProductList = productsToDisplay.filter((item) => item.stocked);
-
-  function filteredList(item, filterSearch) {
-    const length = filterSearch.length;
-    return (
-      item.name.slice(0, length).toLowerCase() === filterSearch.toLowerCase()
-    );
-  }
+    filteredProductList = searchFilteredProducts.filter((item) => item.stocked);
 
   function findCategory(item, refinedProducts) {
     return refinedProducts.findIndex(
@@ -25,9 +20,17 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
     );
   }
 
+  function filteredList(item, filterSearch) {
+    const length = filterSearch.length;
+    return (
+      item.name.slice(0, length).toLowerCase() === filterSearch.toLowerCase()
+    );
+  }
+
   filteredProductList.forEach((item) => {
-    const indexOfItem = findCategory(item, refinedProducts);
-    if (indexOfItem === -1) {
+    const indexInRefined = findCategory(item, refinedProducts);
+
+    if (indexInRefined === -1) {
       const wholeCategory = {
         category: titleCase(item.category),
         list: [
@@ -38,18 +41,20 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
           },
         ],
       };
+
       refinedProducts.push(wholeCategory);
     } else {
+	
       const refinedItemList = {
         price: item.price,
         name: item.name,
         stocked: item.stocked,
       };
 
-      refinedProducts[indexOfItem].category = titleCase(
-        refinedProducts[indexOfItem].category
+      refinedProducts[indexInRefined].category = titleCase(
+        refinedProducts[indexInRefined].category
       );
-      refinedProducts[indexOfItem]["list"].push(refinedItemList);
+      refinedProducts[indexInRefined]["list"].push(refinedItemList);
     }
   });
 
@@ -72,5 +77,8 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
 }
 
 function titleCase(str) {
-   return str.split(" ").map(item => item[0].toUpperCase() + item.slice(1).toLowerCase()).join(" ");
+  return str
+    .split(" ")
+    .map((item) => item[0].toUpperCase() + item.slice(1).toLowerCase())
+    .join(" ");
 }

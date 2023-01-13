@@ -6,6 +6,7 @@ export default function SearchBar({
 }) {
   return (
     <div style={{ width: "100%" }} className="padding-1">
+
       <input
         placeholder="Search..."
         style={{
@@ -17,8 +18,12 @@ export default function SearchBar({
         value={filterSearch}
         onChange={handleSearchChange}
       />
+
+
       <br />
-      <label className="label userSelectionNone" >
+
+
+      <label className="label userSelectionNone">
         <input
           type="checkbox"
           id="checkbox"
@@ -27,6 +32,8 @@ export default function SearchBar({
         />
         Only Show Products in Stock
       </label>
+
+      
       <br />
     </div>
   );

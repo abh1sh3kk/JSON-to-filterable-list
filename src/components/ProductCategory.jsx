@@ -1,8 +1,8 @@
 import ProductRow from "./ProductRow";
 
-export default function ProductCategory({ item, myKey, showStocked }) {
+export default function ProductCategory({ item}) {
   const productRow = item.list.map((item, index) => {
-    return <ProductRow item={item} key={index} showStocked={showStocked}/>;
+    return <ProductRow item={item} key={index} />;
   });
 
   return (
@@ -12,7 +12,6 @@ export default function ProductCategory({ item, myKey, showStocked }) {
       </tr>
 
       {productRow}
-
     </tbody>
   );
 }
