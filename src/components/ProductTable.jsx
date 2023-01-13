@@ -1,4 +1,11 @@
 import ProductCategory from "./ProductCategory";
+import styled from "styled-components";
+
+const Table = styled.table`
+
+`;
+
+
 
 export default function ProductTable({ products, showStocked, filterSearch }) {
   const refinedProducts = [];
@@ -44,7 +51,7 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
 
       refinedProducts.push(wholeCategory);
     } else {
-	
+
       const refinedItemList = {
         price: item.price,
         name: item.name,
@@ -63,7 +70,7 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
   });
 
   return (
-    <table style={{ width: "100%" }}>
+    <Table style={{ width: "100%" }}>
       <thead>
         <tr>
           <th>Name</th>
@@ -72,7 +79,7 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
       </thead>
 
       {groupedItems}
-    </table>
+    </Table>
   );
 }
 

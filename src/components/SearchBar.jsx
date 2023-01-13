@@ -1,3 +1,16 @@
+import styled from "styled-components";
+
+const Input = styled.input`
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  padding: 0.5rem;
+  height: 2.5rem;
+  outline: none;
+  border: none;
+`;
+
 export default function SearchBar({
   showStocked,
   handleCheck,
@@ -6,22 +19,13 @@ export default function SearchBar({
 }) {
   return (
     <div style={{ width: "100%" }} className="padding-1">
-
-      <input
+      <Input
         placeholder="Search..."
-        style={{
-          width: "100%",
-          height: "2rem",
-          fontSize: "1rem",
-          marginBottom: "1rem",
-        }}
         value={filterSearch}
         onChange={handleSearchChange}
       />
 
-
       <br />
-
 
       <label className="label userSelectionNone">
         <input
@@ -33,7 +37,6 @@ export default function SearchBar({
         Only Show Products in Stock
       </label>
 
-      
       <br />
     </div>
   );

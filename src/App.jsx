@@ -1,10 +1,20 @@
 import React from "react";
 import ProductTable from "./components/ProductTable";
 import SearchBar from "./components/SearchBar";
+import styled from "styled-components";
+
+const Main = styled.main`
+  width: 600px;
+  padding: 1rem;
+  box-shadow: 0px 0px 20px black;
+  border-radius: 10px;
+  color: white;
+  background-color: #1a1c43;
+`;
 
 export default function FilterableProductTable() {
   console.clear();
-  
+
   const PRODUCTS = [
     { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
     { category: "Fruits", price: "$3", stocked: true, name: "Dragonfruit" },
@@ -37,14 +47,18 @@ export default function FilterableProductTable() {
   }
 
   return (
-    <main>
+    <Main>
       <SearchBar
         showStocked={showStocked}
         handleCheck={handleCheck}
         filterSearch={filterSearch}
         handleSearchChange={handleSearchChange}
       />
-      <ProductTable products={PRODUCTS} showStocked={showStocked} filterSearch={filterSearch}/>
-    </main>
+      <ProductTable
+        products={PRODUCTS}
+        showStocked={showStocked}
+        filterSearch={filterSearch}
+      />
+    </Main>
   );
 }

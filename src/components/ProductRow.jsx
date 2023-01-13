@@ -1,6 +1,6 @@
 export default function ProductRow({ item, myKey }) {
-  
-  const redForUnstocked = item.stocked ? {} : { color: "#af0000" };
+
+  const redForUnstocked = item.stocked ? {} : { color: "rgb(255 193 0)"};
 
   return (
     <tr key={myKey}>
