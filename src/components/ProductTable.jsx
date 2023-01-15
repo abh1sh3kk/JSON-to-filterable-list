@@ -1,10 +1,4 @@
 import ProductCategory from "./ProductCategory";
-import styled from "styled-components";
-
-const Table = styled.table`
-
-`;
-
 
 
 export default function ProductTable({ products, showStocked, filterSearch }) {
@@ -70,7 +64,7 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
   });
 
   return (
-    <Table style={{ width: "100%" }}>
+    <table style={{ width: "100%" }}>
       <thead>
         <tr>
           <th>Name</th>
@@ -79,7 +73,7 @@ export default function ProductTable({ products, showStocked, filterSearch }) {
       </thead>
 
       {groupedItems}
-    </Table>
+    </table>
   );
 }
 
