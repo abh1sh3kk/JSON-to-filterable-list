@@ -10,6 +10,7 @@ const Main = styled.main`
   border-radius: 10px;
   color: white;
   background-color: #1a1c43;
+  margin-top: 8rem;
 `;
 
 export default function FilterableProductTable() {

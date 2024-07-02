@@ -13,8 +13,8 @@ body {
   );
   height: 110vh;
 
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
